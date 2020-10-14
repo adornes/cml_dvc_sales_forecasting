@@ -135,8 +135,11 @@ Which outputs something like this:
 
 ### Suggestions
 
-* Add more lags and differences to second last week and third last week.
-* Change model hyperparameters
+* Try more features (lags, differences for second last week, third last week and so on) not only at the product level, but at the global.
+* Investigate products with sales over 25 units.
+* Try using LightGBM native support for categorical features with Product Code.
+* Try tuning the model hyperparameters.
+* Try a neural network and ensemble with GBM.
 
 ### Step-by-step
 
