@@ -87,10 +87,10 @@ Check the metrics for your current model:
 dvc metrics show
 ```
 
-Check the how metrics evolved:
+Check the how metrics evolved over time:
 
 ```sh
-dvc metrics diff
+dvc metrics show -T
 ```
 
 And you can also visualize the DAG (Directed Acyclic Graph) for your pipeline:
