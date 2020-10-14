@@ -32,19 +32,19 @@ train_model:
   - path: assets/enriched_data
     md5: cd47c72b46cc68a7a7268a0afda4c24a.dir
   - path: src/train_model.py
-    md5: 4f8f75bedf8405d0e9417c316db52d4e
+    md5: 94dc3e7b97916a7edd144851a5dc45b1
   outs:
   - path: assets/models
-    md5: 7bf76ecd2e930260b6f3728056411b3d.dir
+    md5: aa88131a2246cdc21da55f516dae6c25.dir
 evaluate_model:
   cmd: python src/evaluate_model.py
   deps:
   - path: assets/enriched_data
     md5: cd47c72b46cc68a7a7268a0afda4c24a.dir
   - path: assets/models
-    md5: 7bf76ecd2e930260b6f3728056411b3d.dir
+    md5: aa88131a2246cdc21da55f516dae6c25.dir
   - path: src/evaluate_model.py
     md5: d0147ce74c07b5415f6363236ef415cc
   outs:
   - path: assets/metrics.json
-    md5: e766ec6e21ad011d983bc3579400f1b8
+    md5: 1584edd6056ab90f18aeb2dbbdc32fcf

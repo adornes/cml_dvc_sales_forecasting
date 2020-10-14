@@ -21,7 +21,7 @@ X = train.drop(["Sales"], axis=1)
 y = train["Sales"].values
 
 model = RandomForestRegressor(
-    n_estimators=100, n_jobs=-1, random_state=Config.RANDOM_SEED
+    n_estimators=1000, n_jobs=-1, random_state=Config.RANDOM_SEED
 )
 model.fit(X, y)
 
