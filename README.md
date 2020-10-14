@@ -115,3 +115,13 @@ dvc repro assets/evaluate.dvc
 ```sh
 dvc metrics show -T
 ```
+
+## References
+
+* https://www.mariofilho.com/how-to-predict-multiple-time-series-with-scikit-learn-with-sales-forecasting-example/
+* https://dvc.org/
+* https://www.curiousily.com/posts/reproducible-machine-learning-and-experiment-tracking-pipiline-with-python-and-dvc/
+
+## License
+
+MIT
