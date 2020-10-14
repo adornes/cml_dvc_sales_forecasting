@@ -1,0 +1,50 @@
+load_raw_data:
+  cmd: python src/load_raw_data.py
+  deps:
+  - path: src/load_raw_data.py
+    md5: d216e7844962d4faf5272f2396208b57
+  outs:
+  - path: assets/raw_data
+    md5: 7cfca3a5bd04b188b946d7714ccdb497.dir
+prepare_data:
+  cmd: python src/prepare_data.py
+  deps:
+  - path: assets/raw_data
+    md5: 7cfca3a5bd04b188b946d7714ccdb497.dir
+  - path: src/prepare_data.py
+    md5: f8ab299ba75371fe32d83468739d7d47
+  outs:
+  - path: assets/prepared_data
+    md5: f944f323ac66969aa65a90d074d099f8.dir
+enrich_data:
+  cmd: python src/enrich_data.py
+  deps:
+  - path: assets/prepared_data
+    md5: f944f323ac66969aa65a90d074d099f8.dir
+  - path: src/enrich_data.py
+    md5: f315fd5ff841c0bc5c6d98f6eb4cda59
+  outs:
+  - path: assets/enriched_data
+    md5: cd47c72b46cc68a7a7268a0afda4c24a.dir
+train_model:
+  cmd: python src/train_model.py
+  deps:
+  - path: assets/enriched_data
+    md5: cd47c72b46cc68a7a7268a0afda4c24a.dir
+  - path: src/train_model.py
+    md5: 4f8f75bedf8405d0e9417c316db52d4e
+  outs:
+  - path: assets/models
+    md5: 7bf76ecd2e930260b6f3728056411b3d.dir
+evaluate_model:
+  cmd: python src/evaluate_model.py
+  deps:
+  - path: assets/enriched_data
+    md5: cd47c72b46cc68a7a7268a0afda4c24a.dir
+  - path: assets/models
+    md5: 7bf76ecd2e930260b6f3728056411b3d.dir
+  - path: src/evaluate_model.py
+    md5: d0147ce74c07b5415f6363236ef415cc
+  outs:
+  - path: assets/metrics.json
+    md5: e766ec6e21ad011d983bc3579400f1b8

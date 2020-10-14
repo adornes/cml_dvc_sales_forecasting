@@ -19,7 +19,7 @@ dvc init
 and add remote storage
 
 ```sh
-dvc remote add -d s3remote url s3://adornes-dvc-test/
+dvc remote add -d s3remote s3://adornes-dvc-test/sales-example
 ```
 
 disable analytics (optional)
@@ -33,7 +33,7 @@ dvc config core.analytics false
 Load raw data
 
 ```sh
-dvc run -f assets/raw_data.dvc \
+dvc run -n load_raw_data \
     -d src/load_raw_data.py \
     -o assets/raw_data \
     python src/load_raw_data.py
@@ -42,7 +42,7 @@ dvc run -f assets/raw_data.dvc \
 Prepare data
 
 ```sh
-dvc run -f assets/prepared_data.dvc \
+dvc run -n prepare_data \
     -d src/prepare_data.py \
     -d assets/raw_data \
     -o assets/prepared_data \
@@ -52,7 +52,7 @@ dvc run -f assets/prepared_data.dvc \
 Enrich data
 
 ```sh
-dvc run -f assets/enriched_data.dvc \
+dvc run -n enrich_data \
     -d src/enrich_data.py \
     -d assets/prepared_data \
     -o assets/enriched_data \
@@ -63,7 +63,7 @@ dvc run -f assets/enriched_data.dvc \
 Train model
 
 ```sh
-dvc run -f assets/models.dvc \
+dvc run -n train_model \
     -d src/train_model.py \
     -d assets/enriched_data \
     -o assets/models \
@@ -73,7 +73,7 @@ dvc run -f assets/models.dvc \
 Evaluate the model and save metrics
 
 ```sh
-dvc run -f assets/evaluate.dvc \
+dvc run -n evaluate_model \
     -d src/evaluate_model.py \
     -d assets/enriched_data \
     -d assets/models \
@@ -84,7 +84,13 @@ dvc run -f assets/evaluate.dvc \
 Check the metrics for your current model:
 
 ```sh
-dvc metrics show -T
+dvc metrics show
+```
+
+Check the how metrics evolved:
+
+```sh
+dvc metrics diff
 ```
 
 ## Evolving your model
@@ -113,7 +119,7 @@ dvc repro assets/evaluate.dvc
 4) Check the differences in the metrics
 
 ```sh
-dvc metrics show -T
+dvc metrics diff
 ```
 
 ## References

@@ -1,0 +1,37 @@
+stages:
+  load_raw_data:
+    cmd: python src/load_raw_data.py
+    deps:
+    - src/load_raw_data.py
+    outs:
+    - assets/raw_data
+  prepare_data:
+    cmd: python src/prepare_data.py
+    deps:
+    - assets/raw_data
+    - src/prepare_data.py
+    outs:
+    - assets/prepared_data
+  enrich_data:
+    cmd: python src/enrich_data.py
+    deps:
+    - assets/prepared_data
+    - src/enrich_data.py
+    outs:
+    - assets/enriched_data
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+    - assets/enriched_data
+    - src/train_model.py
+    outs:
+    - assets/models
+  evaluate_model:
+    cmd: python src/evaluate_model.py
+    deps:
+    - assets/enriched_data
+    - assets/models
+    - src/evaluate_model.py
+    metrics:
+    - assets/metrics.json:
+        cache: false
