@@ -4,7 +4,7 @@ import pickle
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_squared_log_error
+from sklearn.metrics import mean_squared_error, mean_squared_log_error
 
 from config import Config
 
@@ -27,9 +27,12 @@ y = val["Sales"].values
 
 model = pickle.load(open(str(Config.MODELS_PATH / "model.pickle"), "rb"))
 
-p = model.predict(X)
+r_squared = model.score(X, y)
 
-error = rmsle(y, p)
+y_pred = model.predict(X)
+
+rmse = math.sqrt(mean_squared_error(y, y_pred))
+rmsle = rmsle(y, y_pred)
 
 with open(str(Config.METRICS_FILE_PATH), "w") as outfile:
-    json.dump(dict(rmsle=error), outfile)
+    json.dump(dict(r_squared=r_squared, rmse=rmse, rmsle=rmsle), outfile)
