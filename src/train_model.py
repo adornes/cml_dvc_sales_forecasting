@@ -20,7 +20,9 @@ train = data[data["Week"] < valid_begin]
 X = train.drop(["Sales"], axis=1)
 y = train["Sales"].values
 
-model = RandomForestRegressor(n_estimators=1000, n_jobs=-1, random_state=0)
+model = RandomForestRegressor(
+    n_estimators=100, n_jobs=-1, random_state=Config.RANDOM_SEED
+)
 model.fit(X, y)
 
 pickle.dump(model, open(str(Config.MODELS_PATH / "model.pickle"), "wb"))
