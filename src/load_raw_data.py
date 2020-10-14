@@ -13,4 +13,6 @@ gdown.download(
 
 df = pd.read_csv(str(Config.RAW_DATA_FILE_PATH))
 
-print(f"INFO: Raw data successfully loaded with {df.shape[0]} rows and {df.shape[1]} columns")
+print(
+    f"INFO: Raw data successfully loaded with {df.shape[0]} rows and {df.shape[1]} columns"
+)
