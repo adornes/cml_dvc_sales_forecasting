@@ -13,6 +13,8 @@ data["Last_Week_Sales"] = data.groupby(["Product_Code"])["Sales"].shift()
 data["Last_Week_Diff"] = data.groupby(["Product_Code"])["Last_Week_Sales"].diff()
 data['Last-1_Week_Sales'] = data.groupby(['Product_Code'])['Sales'].shift(2)
 data['Last-1_Week_Diff'] = data.groupby(['Product_Code'])['Last-1_Week_Sales'].diff()
+data['Last-2_Week_Sales'] = data.groupby(['Product_Code'])['Sales'].shift(3)
+data['Last-2_Week_Diff'] = data.groupby(['Product_Code'])['Last-2_Week_Sales'].diff()
 data = data.dropna()
 
 data.to_csv(str(Config.ENRICHED_DATA_FILE_PATH), index=None)
