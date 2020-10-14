@@ -93,6 +93,44 @@ Check the how metrics evolved:
 dvc metrics diff
 ```
 
+And you can also visualize the DAG (Directed Acyclic Graph) for your pipeline:
+
+```sh
+dvc dag
+```
+
+Which outputs something like this:
+
+```
+              +---------------+
+              | load_raw_data |
+              +---------------+
+                       *
+                       *
+                       *
+               +--------------+
+               | prepare_data |
+               +--------------+
+                       *
+                       *
+                       *
+               +-------------+
+               | enrich_data |
+               +-------------+
+              ***            ***
+            **                  ***
+          **                       **
++-------------+                      **
+| train_model |                    **
++-------------+                 ***
+              ***            ***
+                 **        **
+                   **    **
+              +----------------+
+              | evaluate_model |
+              +----------------+
+```
+
 ## Evolving your model
 
 ### Suggestions
