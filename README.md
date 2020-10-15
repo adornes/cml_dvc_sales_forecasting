@@ -19,7 +19,7 @@ dvc init
 and add remote storage
 
 ```sh
-dvc remote add -d s3remote s3://adornes-dvc-test/sales-example
+dvc remote add -d name_of_your_choice {YOUR_REMOTE_STORAGE_HERE}
 ```
 
 disable analytics (optional)
